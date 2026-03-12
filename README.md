@@ -1,38 +1,95 @@
 # Stock Portfolio Analytics Dashboard
 
-An industry-style analytics project that evaluates a multi-asset portfolio with risk, return, drawdown, and correlation insights. The dashboard uses Yahoo Finance data and presents interactive visualizations suitable for demos and resume showcases.
+📈 An industry-style analytics platform that evaluates multi-asset portfolios with comprehensive risk analysis, performance tracking, and factor insights. The dashboard uses Yahoo Finance data and presents interactive visualizations suitable for demos and portfolio management.
 
-## Highlights
-- Portfolio vs benchmark performance
-- Risk metrics: volatility, Sharpe ratio, max drawdown
-- Key insights summary panel
-- Correlation heatmap and allocation breakdown
-- Rolling volatility and drawdown curves
-- Monthly returns heatmap
-- Factor and beta analytics page
-- Performance attribution table + waterfall chart
-- Data export (prices + returns)
-- Portfolio health score
-- PDF report export
+## ✨ Features
 
-## Tech Stack
-- Python, Streamlit
-- Pandas, NumPy
-- Plotly
-- Yahoo Finance (yfinance)
+- **Performance Metrics**: Annual return, volatility, Sharpe ratio, max drawdown
+- **Benchmark Comparison**: Compare against SPY, QQQ, or any ticker
+- **Risk Analysis**: Rolling volatility, drawdown curves, correlation matrices
+- **Factor & Beta Analytics**: Compute alpha, beta, and factor proxies
+- **Attribution Analysis**: Understand asset-level contributions
+- **Portfolio Health Score**: AI-powered assessment
+- **Monthly Heatmaps**: Visualize monthly returns patterns
+- **PDF Reports**: Download comprehensive reports
+- **Data Export**: Export prices and returns
 
-## Quickstart
+## 🚀 Deploy on Hugging Face Spaces
+
+### One-Click Setup
+
+1. Go to [huggingface.co/spaces](https://huggingface.co/spaces)
+2. Click **Create new Space**
+3. Fill in:
+   - **Space name**: `stock-portfolio-analytics`
+   - **License**: MIT
+   - **Space SDK**: Streamlit
+4. Click **Create Space**
+
+### Push Your Code
+
+```bash
+cd stock-portfolio-analytics
+
+# Configure HF repo
+git init
+git add .
+git commit -m "Deploy stock portfolio analytics"
+
+# Add HF remote (replace YOUR-USERNAME)
+git remote add hf https://huggingface.co/spaces/YOUR-USERNAME/stock-portfolio-analytics
+git push hf main
+```
+
+**Your app deploys in ~2 minutes automatically!**
+
+Access it at: `https://huggingface.co/spaces/YOUR-USERNAME/stock-portfolio-analytics`
+
+## 💻 Local Development
 
 ```bash
 pip install -r requirements.txt
 streamlit run app.py
 ```
 
-## Usage
-- Enter tickers and optional weights in the sidebar.
-- Choose date range, benchmark, and risk-free rate.
-- Explore portfolio analytics and compare with SPY or any benchmark ticker.
+Open `http://localhost:8501`
 
-## Notes
-- Data comes from Yahoo Finance and may have missing values for some tickers.
-- This project is intended for education and portfolio demonstration only.
+## 📊 Usage
+
+1. **Input Configuration** (sidebar):
+   - Enter tickers: `AAPL, MSFT, AMZN, GOOGL, NVDA`
+   - Set weights (optional, auto-equal if empty)
+   - Choose benchmark and date range
+   - Adjust risk-free rate
+
+2. **Click "Run Analysis"** to compute metrics
+
+3. **Explore Results**:
+   - Main dashboard: KPIs, charts, insights
+   - Factor & Beta page: Alpha, beta, momentum analysis
+
+## 🛠️ Tech Stack
+
+- **Framework**: Streamlit
+- **Data Processing**: Pandas, NumPy
+- **Visualization**: Plotly
+- **Financial Data**: Yahoo Finance (yfinance)
+- **Reports**: ReportLab
+
+## ⚙️ Performance Optimizations
+
+- Data caching: 1 hour TTL (reduces API calls)
+- Lazy-loaded PDF generation
+- Minimal Streamlit toolbar
+- Optimized dependencies
+
+## ⚠️ Notes
+
+- Data from Yahoo Finance (historical ~2000+)
+- Real-time prices updated daily
+- Minimum 252 trading days recommended for factor analysis
+- Education and demonstration purposes
+
+## 📝 License
+
+MIT License

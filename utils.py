@@ -3,11 +3,6 @@ from typing import Dict, List, Tuple
 
 from io import BytesIO
 
-from reportlab.lib import colors
-from reportlab.lib.pagesizes import letter
-from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
-
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -259,6 +254,12 @@ def build_pdf_report(
     attribution: pd.DataFrame,
     health_score: float,
 ) -> bytes:
+    # Lazy import reportlab - only load when PDF is actually generated
+    from reportlab.lib import colors
+    from reportlab.lib.pagesizes import letter
+    from reportlab.lib.styles import getSampleStyleSheet
+    from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+    
     buffer = BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=letter, title="Portfolio Analytics Report")
     styles = getSampleStyleSheet()

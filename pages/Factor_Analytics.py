@@ -16,7 +16,7 @@ from utils import (
 )
 
 
-@st.cache_data(show_spinner=False)
+@st.cache_data(show_spinner=False, ttl=3600)
 def load_prices(tickers: list[str], start: dt.date, end: dt.date) -> pd.DataFrame:
     return fetch_prices(tickers, start, end)
 
