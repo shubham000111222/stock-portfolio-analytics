@@ -210,7 +210,7 @@ def generate_insights(
     outperform = "outperformed" if delta >= 0 else "underperformed"
 
     insights = [
-        f"Portfolio {outperformed} benchmark by {delta:.2%} over the period.",
+        f"Portfolio {outperform} benchmark by {delta:.2%} over the period.",
         f"Best asset: {best_asset} ({total_returns[best_asset]:.2%}); worst asset: {worst_asset} ({total_returns[worst_asset]:.2%}).",
         f"Win rate: {win_rate:.1%} of days were positive returns.",
         f"Average pairwise correlation: {avg_corr:.2f} (lower is better for diversification).",
