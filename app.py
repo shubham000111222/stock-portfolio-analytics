@@ -89,8 +89,8 @@ if prices.empty:
 raw_portfolio_prices = prices[raw_tickers].dropna(how="all")
 portfolio_prices = raw_portfolio_prices.copy()
 benchmark_prices = prices[[benchmark]].dropna(how="all")
-portfolio_prices = portfolio_prices.fillna(method="ffill").dropna()
-benchmark_prices = benchmark_prices.fillna(method="ffill").dropna()
+portfolio_prices = portfolio_prices.ffill().dropna()
+benchmark_prices = benchmark_prices.ffill().dropna()
 
 common_index = portfolio_prices.index.intersection(benchmark_prices.index)
 portfolio_prices = portfolio_prices.loc[common_index]
