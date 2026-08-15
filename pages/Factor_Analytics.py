@@ -26,16 +26,28 @@ st.caption("Market beta, alpha attribution, and risk factor proxies")
 
 with st.sidebar:
     st.header("Portfolio Inputs")
-    tickers_input = st.text_input(
-        "Tickers (comma-separated)",
-        value="AAPL, MSFT, AMZN, GOOGL, NVDA",
+    POPULAR_TICKERS = [
+        "AAPL", "MSFT", "AMZN", "GOOGL", "NVDA", "META", "TSLA", "NFLX",
+        "JPM", "V", "WMT", "JNJ", "PG", "XOM", "UNH", "MA", "HD", "BAC", 
+        "LLY", "ABBV", "PFE", "KO", "PEP", "COST", "AVGO", "TMO", "CSCO",
+        "MCD", "ABT", "CRM", "DIS", "ADBE", "NKE", "UPS", "TXN", "VZ", 
+        "NEE", "INTC", "AMD", "QCOM", "IBM", "SPY", "QQQ", "DIA", "IWM"
+    ]
+    tickers_input = st.multiselect(
+        "Tickers",
+        options=POPULAR_TICKERS,
+        default=["AAPL", "MSFT", "AMZN", "GOOGL", "NVDA"],
     )
     weights_input = st.text_input(
         "Weights (optional, comma-separated)",
         value="",
         help="Example: 0.2, 0.2, 0.2, 0.2, 0.2",
     )
-    benchmark = st.text_input("Benchmark ticker", value="SPY")
+    benchmark = st.selectbox(
+        "Benchmark ticker",
+        options=["SPY", "QQQ", "DIA", "IWM"],
+        index=0
+    )
     start_date = st.date_input("Start date", value=dt.date(2019, 1, 1))
     end_date = st.date_input("End date", value=dt.date.today())
     rf_rate = st.number_input("Risk-free rate (annual)", value=0.03, step=0.005)
@@ -46,7 +58,7 @@ if not run:
     st.info("Configure inputs and click 'Run analysis' to generate the analytics.")
     st.stop()
 
-raw_tickers = [t.strip().upper() for t in tickers_input.split(",") if t.strip()]
+raw_tickers = [t.strip().upper() for t in tickers_input]
 if len(raw_tickers) < 2:
     st.error("Please enter at least two tickers")
     st.stop()
@@ -62,6 +74,11 @@ with st.spinner("Fetching market data..."):
 
 if prices.empty:
     st.error("No data returned. Try a different date range or tickers.")
+    st.stop()
+
+missing_tickers = [t for t in raw_tickers + [benchmark] if t not in prices.columns or prices[t].dropna().empty]
+if missing_tickers:
+    st.error(f"Failed to download data for: {', '.join(missing_tickers)}. This is often due to Yahoo Finance rate limits on cloud platforms. Please try again.")
     st.stop()
 
 portfolio_prices = prices[raw_tickers].dropna(how="all")
