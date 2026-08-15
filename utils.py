@@ -72,7 +72,7 @@ def compute_metrics(port_returns: pd.Series, rf_rate: float) -> Dict[str, pd.Ser
 
 
 def make_monthly_heatmap(port_returns: pd.Series) -> go.Figure:
-    monthly = port_returns.resample("M").apply(lambda x: (1 + x).prod() - 1)
+    monthly = port_returns.resample("ME").apply(lambda x: (1 + x).prod() - 1)
     if monthly.empty:
         return go.Figure()
     data = (
