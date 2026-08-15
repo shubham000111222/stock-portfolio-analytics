@@ -2,6 +2,8 @@
 
 📈 An industry-style analytics platform that evaluates multi-asset portfolios with comprehensive risk analysis, performance tracking, and factor insights. The dashboard uses Yahoo Finance data and presents interactive visualizations suitable for demos and portfolio management.
 
+**[Live Demo](https://stock-portfolio-analytics-5ustsrbxfa4aqzcmnehqwt.streamlit.app/)**
+
 ## ✨ Features
 
 - **Performance Metrics**: Annual return, volatility, Sharpe ratio, max drawdown
@@ -14,36 +16,15 @@
 - **PDF Reports**: Download comprehensive reports
 - **Data Export**: Export prices and returns
 
-## 🚀 Deploy on Hugging Face Spaces
+## 🚀 Deploy on Streamlit Community Cloud
 
-### One-Click Setup
+1. Create a [Streamlit Community Cloud](https://share.streamlit.io/) account.
+2. Click **New app**
+3. Select your GitHub repository for `stock-portfolio-analytics`
+4. Main file path: `app.py`
+5. Click **Deploy**
 
-1. Go to [huggingface.co/spaces](https://huggingface.co/spaces)
-2. Click **Create new Space**
-3. Fill in:
-   - **Space name**: `stock-portfolio-analytics`
-   - **License**: MIT
-   - **Space SDK**: Streamlit
-4. Click **Create Space**
-
-### Push Your Code
-
-```bash
-cd stock-portfolio-analytics
-
-# Configure HF repo
-git init
-git add .
-git commit -m "Deploy stock portfolio analytics"
-
-# Add HF remote (replace YOUR-USERNAME)
-git remote add hf https://huggingface.co/spaces/YOUR-USERNAME/stock-portfolio-analytics
-git push hf main
-```
-
-**Your app deploys in ~2 minutes automatically!**
-
-Access it at: `https://huggingface.co/spaces/YOUR-USERNAME/stock-portfolio-analytics`
+Access it at: `https://stock-portfolio-analytics-5ustsrbxfa4aqzcmnehqwt.streamlit.app/`
 
 ## 💻 Local Development
 
